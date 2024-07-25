@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP xmlns="http://mcd.rou.st.com/modules.php?name=mcu" xmlns:ns0="http://www.w3.org/2001/XMLSchema-instance" CodeTemplate="app_I-CUBE-IoTC-DA16k-PMOD_h.ftl;app_I-CUBE-IoTC-DA16k-PMOD_c.ftl" DBVersion="V4.0" Name="I-CUBE-IoTC-DA16k-PMOD" RootFolder="Packs/Avnet-IotConnect/I-CUBE-IoTC-DA16k-PMOD/1.0.0/" Version="1.0.0" ns0:schemaLocation="http://mcd.rou.st.com/modules.php?name=mcu ../../../../../../../doc/V4/Development/Specifications/db/thirdPartyDb.xsd">
+    <RefConfig Name="ExtensionOoBoardJjiotcIida16kIipmod">
+        <Component Name="ExtensionOoBoard:iotcIida16kIipmod:subgroup:$ExtensionOoBoardJjiotcIida16kIipmodJjsubgroup"/>
+        <ConfigFile Name="DA16K_AT_LIB_config_header"/>
+        <Defines Name="DA16K_CONFIG_FILE" Type="Cdefine" Value="&quot;da16k_config.h&quot;"/>
+    </RefConfig>
+    <RefConfig Name="DeviceJjApplication">
+        <Component Name="Device:Application:singleIithread:$DeviceJjApplication"/>
+        <ConfigFile Name="DeviceJjApplication_conf"/>
+    </RefConfig>
+    <RefConfigFile Added="true" Description="Template that generates the da16 pmod AT cmd library config header.&#9;&#9;" Name="DA16K_AT_LIB_config_header" Template="da_pack_config_E.ftl">
+        <File Category="header" Condition="all" Name="App/da16k_config.h"/>
+    </RefConfigFile>
+    <RefConfigFile Added="true" Name="DeviceJjApplication_conf" Template="default_conf.ftl">
+        <File Category="header" Condition="all" Name="./Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD_conf.h"/>
+        <Argument AddressOf="false" Comment="iotc_mode" GenericType="simple" Name="iotc_mode" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_duid" GenericType="simple" Name="iotc_duid" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_env" GenericType="simple" Name="iotc_env" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_device_cert" GenericType="simple" Name="iotc_device_cert" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_device_key" GenericType="simple" Name="iotc_device_key" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_wifi_ssid" GenericType="simple" Name="iotc_wifi_ssid" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_wifi_passphrase" GenericType="simple" Name="iotc_wifi_passphrase" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_wifi_encryption_type" GenericType="simple" Name="iotc_wifi_encryption_type" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_wifi_hidden_network" GenericType="simple" Name="iotc_wifi_hidden_network" OptimizationCondition="equal"/>
+        <Argument AddressOf="false" Comment="iotc_wifi_connection_timeout" GenericType="simple" Name="iotc_wifi_connection_timeout" OptimizationCondition="equal"/>
+    </RefConfigFile>
+    <RefBspComponent BspIpName="UART|USART|LPUART" BspModeName="Asynchronous" Name="Serial Port">
+        <File Category="template" Condition="all" Name="./da16k_uart_c.ftl"/>
+    </RefBspComponent>
+    <RefComponent Cclass="ExtensionOoBoard" Cgroup="iotcIida16kIipmod" Cversion="1Gg0Gg0">
+        <SubComponent Csub="subgroup" Cvariant="true" Cversion="1Gg0Gg0">
+            <File Category="source" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_comm.c"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_comm.h"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_uart.h"/>
+        </SubComponent>
+    </RefComponent>
+    <RefComponent Cclass="Device" Cgroup="Application" Cversion="1Gg0Gg0">
+        <SubComponent Csub="" Cvariant="singleIithread:singleIithread" ModuleName="iotc_da16k_pmod">
+            <File Category="doc" Condition="" Name="Projects/iotc_da16k_pmod/Applications/single_thread/README.md.txt"/>
+        </SubComponent>
+    </RefComponent>
+</IP>
