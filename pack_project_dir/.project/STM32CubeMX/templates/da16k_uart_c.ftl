@@ -147,19 +147,19 @@ static uint32_t timout;
 #define SET_TIMEOUT() (timout= HAL_GetTick()+_500MS)
 #define GET_TIMEOUT() (timout < HAL_GetTick())
 #define TERM_LINE_SIZ (256)
-bool txDmaInUse = false;
-static volatile char rxBuf[TERM_LINE_SIZ];
+bool tx_dma_busy = false;
+static volatile char rx_buf[TERM_LINE_SIZ];
 static int head=0, tail=0;
 
-static char rxByte;
+static char rx_byte;
 
 #if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
 /*
- * Callback that occurs at the end of a transmission. Clears the txDmaInUse flag to allow subsequent transmissions.
+ * Callback that occurs at the end of a transmission. Clears the tx_dma_busy flag to allow subsequent transmissions.
  */
 void HAL_DA16K_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
     if(huart == da_uart_p) {
-        txDmaInUse = false;
+        tx_dma_busy = false;
     }
 }
 
@@ -169,19 +169,20 @@ void HAL_DA16K_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
  */
 void HAL_DA16K_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if(huart == da_uart_p) {
-        HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rxByte, 1);
-        rxBuf[head] = rxByte;
-        if(++head >= TERM_LINE_SIZ)
+        HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rx_byte, 1);
+        rx_buf[head] = rx_byte;
+        if(++head >= TERM_LINE_SIZ) {
             head = 0;
+        }
     }
 }
 #else
 /* 
- * Callback that occurs at the end of a transmission. Clears the txDmaInUse flag to allow subsequent transmissions.
+ * Callback that occurs at the end of a transmission. Clears the tx_dma_busy flag to allow subsequent transmissions.
  */
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
     if(huart == da_uart_p) {
-        txDmaInUse = false;
+        tx_dma_busy = false;
     }
 }
 /* 
@@ -190,10 +191,11 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
  */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if(huart == da_uart_p) {
-        HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rxByte, 1);
-        rxBuf[head] = rxByte;
-        if(++head >= TERM_LINE_SIZ)
+        HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rx_byte, 1);
+        rx_buf[head] = rx_byte;
+        if(++head >= TERM_LINE_SIZ) {
             head = 0;
+        }
     }
 }
 #endif
@@ -204,20 +206,23 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
  */
 bool da16k_uart_init(void) {
 
-    if(BSP_${IpInstance}_Init())
+    if(BSP_${IpInstance}_Init()) {
         return false;
+    }
 
 #if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
     if(HAL_OK != HAL_UART_RegisterCallback(da_uart_p, HAL_UART_TX_COMPLETE_CB_ID,
-                                                &HAL_DA16K_UART_TxCpltCallback) )
+        &HAL_DA16K_UART_TxCpltCallback) ) {
         return false;
+    }
 
     if(HAL_OK != HAL_UART_RegisterCallback(da_uart_p, HAL_UART_RX_COMPLETE_CB_ID,
-                                                &HAL_DA16K_UART_RxCpltCallback) )
+        &HAL_DA16K_UART_RxCpltCallback) ) {
         return false;
+    }
 #endif
 
-    HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rxByte, 1);
+    HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rx_byte, 1);
     return true;
 }
 
@@ -227,26 +232,28 @@ bool da16k_uart_init(void) {
  * of 500ms expires.
  */
 bool da16k_uart_send(const char *src, size_t length) {
-    static char txBuf[2][TERM_LINE_SIZ];
-    static int bufSelect = 0;
+    static char tx_buf[2][TERM_LINE_SIZ];
+    static int buf_select = 0;
     HAL_StatusTypeDef s;
 
-    if(!src || length==0)
+    if(!src || length==0) {
         return false;
+    }
 
     SET_TIMEOUT();
-    while(txDmaInUse){
-        if(GET_TIMEOUT())
+    while(tx_dma_busy){
+        if(GET_TIMEOUT()) {
             return false;
+        }
     }
-    txDmaInUse = true;
+    tx_dma_busy = true;
 
-    memcpy(txBuf[bufSelect], src, length);
+    memcpy(tx_buf[buf_select], src, length);
     do {
-        s = HAL_UART_Transmit_DMA(da_uart_p, (uint8_t*)txBuf[bufSelect], length);
+        s = HAL_UART_Transmit_DMA(da_uart_p, (uint8_t*)tx_buf[buf_select], length);
     }while(s != HAL_OK);
 
-    bufSelect = bufSelect ? 0:1;
+    buf_select = buf_select ? 0:1;
 
     return true;
 }
@@ -256,16 +263,18 @@ bool da16k_uart_send(const char *src, size_t length) {
  * there are no characters to be read the code will block here for the specified timeout length.
  */
 da16k_err_t da16k_uart_get_char(char *dst, uint32_t timeout_ms) {
-    if(!dst)
+    if(!dst) {
         return DA16K_INVALID_PARAMETER;
+    }
 
     uint32_t expiry = HAL_GetTick() + timeout_ms;
     
     do {
         if(tail != head) {
-            *dst = rxBuf[tail];
-            if(++tail >= TERM_LINE_SIZ)
+            *dst = rx_buf[tail];
+            if(++tail >= TERM_LINE_SIZ) {
                 tail = 0;
+            }
             return DA16K_SUCCESS;
         }           
     }while(HAL_GetTick() < expiry);     
