@@ -29,7 +29,7 @@
     [#list SWIP.variables as variables]
         [#if variables.name?contains("IpName")]
             [#assign IpName = variables.value]
-        [/#if]	
+        [/#if]  
     [/#list]
     [#if SWIP.bsp??]
         [#list SWIP.bsp as bsp]
@@ -87,7 +87,7 @@
     [#list SWIP.variables as variables]
         [#if variables.name?contains("IpName")]
             [#assign IpName = variables.value]
-        [/#if]	
+        [/#if]  
     [/#list]
     [#if SWIP.bsp??]
         [#list SWIP.bsp as bsp]
@@ -146,8 +146,57 @@ static uint32_t timout;
 #define _500MS (50)
 #define SET_TIMEOUT() (timout= HAL_GetTick()+_500MS)
 #define GET_TIMEOUT() (timout < HAL_GetTick())
+#define TERM_LINE_SIZ (256)
+bool txDmaInUse = false;
+static volatile char rxBuf[TERM_LINE_SIZ];
+static int head=0, tail=0;
 
 static char rxByte;
+
+#if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+/*
+ * Callback that occurs at the end of a transmission. Clears the txDmaInUse flag to allow subsequent transmissions.
+ */
+void HAL_DA16K_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
+    if(huart == da_uart_p) {
+        txDmaInUse = false;
+    }
+}
+
+/*
+ * Callback that happens when characters are received via interrupt one at a time. The function places each byte in a
+ * buffer to be processed when the system can.
+ */
+void HAL_DA16K_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    if(huart == da_uart_p) {
+        HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rxByte, 1);
+        rxBuf[head] = rxByte;
+        if(++head >= TERM_LINE_SIZ)
+            head = 0;
+    }
+}
+#else
+/* 
+ * Callback that occurs at the end of a transmission. Clears the txDmaInUse flag to allow subsequent transmissions.
+ */
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
+    if(huart == da_uart_p) {
+        txDmaInUse = false;
+    }
+}
+/* 
+ * Callback that happens when characters are received via interrupt one at a time. The function places each byte in a
+ * buffer to be processed when the system can.
+ */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    if(huart == da_uart_p) {
+        HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rxByte, 1);
+        rxBuf[head] = rxByte;
+        if(++head >= TERM_LINE_SIZ)
+            head = 0;
+    }
+}
+#endif
 
 /* 
  * Function required by the AT cmd lib. This initialises the serial port so it's ready to place received bytes via
@@ -155,68 +204,51 @@ static char rxByte;
  */
 bool da16k_uart_init(void) {
 
-	if(BSP_${IpInstance}_Init())
-		return false;
+    if(BSP_${IpInstance}_Init())
+        return false;
 
-	HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rxByte, 1);
-	return true;
+#if (USE_HAL_UART_REGISTER_CALLBACKS == 1)
+    if(HAL_OK != HAL_UART_RegisterCallback(da_uart_p, HAL_UART_TX_COMPLETE_CB_ID,
+                                                &HAL_DA16K_UART_TxCpltCallback) )
+        return false;
+
+    if(HAL_OK != HAL_UART_RegisterCallback(da_uart_p, HAL_UART_RX_COMPLETE_CB_ID,
+                                                &HAL_DA16K_UART_RxCpltCallback) )
+        return false;
+#endif
+
+    HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rxByte, 1);
+    return true;
 }
 
-bool txDmaInUse = false;
-/* 
- * Callback that occurs at the end of a transmission. Clears the txDmaInUse flag to allow subsequent transmissions.
- */
-void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
-	if(huart == da_uart_p) {
-		txDmaInUse = false;
-	}
-}
-
-#define TERM_LINE_SIZ (256)
 /* 
  * Function required by the AT cmd lib. This function sends strings of known length via serial port. Should a 2nd
  * call occur before the 1st transmission has completed it will block here until the transfer is complete or a timeout
  * of 500ms expires.
  */
 bool da16k_uart_send(const char *src, size_t length) {
-	static char txBuf[2][TERM_LINE_SIZ];
-	static int bufSelect = 0;
-	HAL_StatusTypeDef s;
+    static char txBuf[2][TERM_LINE_SIZ];
+    static int bufSelect = 0;
+    HAL_StatusTypeDef s;
 
-	if(!src || length==0)
-		return false;
+    if(!src || length==0)
+        return false;
 
-	SET_TIMEOUT();
-	while(txDmaInUse){
-		if(GET_TIMEOUT())
-			return false;
-	}
-	txDmaInUse = true;
+    SET_TIMEOUT();
+    while(txDmaInUse){
+        if(GET_TIMEOUT())
+            return false;
+    }
+    txDmaInUse = true;
 
-	memcpy(txBuf[bufSelect], src, length);
-	do {
-		s = HAL_UART_Transmit_DMA(da_uart_p, (uint8_t*)txBuf[bufSelect], length);
-	}while(s != HAL_OK);
+    memcpy(txBuf[bufSelect], src, length);
+    do {
+        s = HAL_UART_Transmit_DMA(da_uart_p, (uint8_t*)txBuf[bufSelect], length);
+    }while(s != HAL_OK);
 
-	bufSelect = bufSelect ? 0:1;
+    bufSelect = bufSelect ? 0:1;
 
     return true;
-}
-
-static volatile char rxBuf[TERM_LINE_SIZ];
-static int head=0, tail=0;
-
-/* 
- * Callback that happens when characters are received via interrupt one at a time. The function places each byte in a
- * buffer to be processed when the system can.
- */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-	if(huart == da_uart_p) {
-		HAL_UART_Receive_IT(da_uart_p, (uint8_t *) &rxByte, 1);
-		rxBuf[head] = rxByte;
-		if(++head >= TERM_LINE_SIZ)
-			head = 0;
-	}
 }
 
 /* 
@@ -224,21 +256,21 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
  * there are no characters to be read the code will block here for the specified timeout length.
  */
 da16k_err_t da16k_uart_get_char(char *dst, uint32_t timeout_ms) {
-	if(!dst)
-		return DA16K_INVALID_PARAMETER;
+    if(!dst)
+        return DA16K_INVALID_PARAMETER;
 
-	uint32_t expiry = HAL_GetTick() + timeout_ms;
-	
-	do {
-		if(tail != head) {
-			*dst = rxBuf[tail];
-			if(++tail >= TERM_LINE_SIZ)
-				tail = 0;
-			return DA16K_SUCCESS;
-		}			
-	}while(HAL_GetTick() < expiry);		
-	
-	return DA16K_TIMEOUT;
+    uint32_t expiry = HAL_GetTick() + timeout_ms;
+    
+    do {
+        if(tail != head) {
+            *dst = rxBuf[tail];
+            if(++tail >= TERM_LINE_SIZ)
+                tail = 0;
+            return DA16K_SUCCESS;
+        }           
+    }while(HAL_GetTick() < expiry);     
+    
+    return DA16K_TIMEOUT;
 }
 
 /* 
@@ -248,5 +280,5 @@ void da16k_uart_close(void) {
     
     BSP_${IpInstance}_DeInit();
     
-	return;
+    return;
 }
