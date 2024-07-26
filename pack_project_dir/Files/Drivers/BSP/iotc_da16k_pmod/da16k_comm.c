@@ -227,7 +227,6 @@ static da16k_err_t da16k_at_receive_and_validate_response(char *buf, size_t buf_
             DA16K_PRINT("%s: WARNING! RX buffer overflow!\r\nRX Buffer contents:\r\n%s\r\n", __func__, buf);
         }
 
-//        DA16K_PRINT("%s: <- %s\r\n", __func__, buf);
 
         /* Look for proper response */
         response_data_start = da16k_at_get_start_of_response_data(buf, buf_size, expected_response);

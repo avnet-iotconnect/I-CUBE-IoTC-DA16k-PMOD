@@ -19,8 +19,11 @@
 #error "Please define DA16K_CONFIG_FILE!"
 #endif
 
+#include "da16k_platforms.h"
+
 /* Enable generic printf */
 #if !defined(DA16K_PRINT)
+#include <stdio.h>
 #define DA16K_PRINT             printf
 #endif
 
@@ -44,7 +47,6 @@
 #if !defined(DA16K_CONFIG_FREE_FN)
 #define DA16K_CONFIG_FREE_FN free
 #endif
-
 
 typedef enum {
     DA16K_IOTC_AZURE    = 0,

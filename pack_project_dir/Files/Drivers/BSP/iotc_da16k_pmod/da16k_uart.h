@@ -8,15 +8,16 @@
 #ifndef DA16K_COMM_DA16K_UART_H_
 #define DA16K_COMM_DA16K_UART_H_
 
+#include <stdbool.h>
+#include "da16k_comm.h"
+#include "string.h"
+
 /* Generic uart functionality
  *
  * Link to hardware-specific C-file implementing these functions.
  * These functions MUST be implemented by the application.
  *
  */
-
-#include "da16k_comm.h"
-#include "string.h"
 
 #define DA16K_UART_BAUD_RATE        115200
 #define DA16K_UART_TIMEOUT_MS       500
