@@ -4,6 +4,7 @@
     <name>I-CUBE-IoTC-DA16k-PMOD</name>
     <description>Add on for the IoTConnect enabled DA16k PMOD extension board.</description>
     <url/>
+    <license>LICENSE.txt</license>
     <releases>
         <release date="2024-07-03" version="1.0.0">1st release</release>
     </releases>
