@@ -1,0 +1,3 @@
+[submodule "iotc-freertos-da16k-atcmd-lib"]
+	path = iotc-freertos-da16k-atcmd-lib
+	url = git@github.com:avnet-iotconnect/iotc-freertos-da16k-atcmd-lib.git
