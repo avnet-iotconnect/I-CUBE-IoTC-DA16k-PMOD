@@ -80,13 +80,14 @@ __weak void da16k_cmd_handler(da16k_cmd_t * cmd) {
 int MX_${ModuleName}_Process(void) {
     da16k_cmd_t current_cmd = {0};
     da16k_err_t err;
-    static uint32_t tickExpiry = 0;
-    uint32_t tickCurrent = HAL_GetTick();
+    static uint32_t tick_expiry = 0;
+    uint32_t tick_current = HAL_GetTick();
 
-    if(tickCurrent < tickExpiry)
+    if(tick_current < tick_expiry) {
         return 0;
-    else
-        tickExpiry += 2000;
+    } else {
+        tick_expiry += 2000;
+    }
 
     err = da16k_get_cmd(&current_cmd);
 
