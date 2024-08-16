@@ -17,17 +17,17 @@
  
 da16k_iotc_cfg_t iotc_cfg = {
         iotc_mode,
+        iotc_cpid,
         iotc_duid,
         iotc_env,
-        "",
-        iotc_device_cert,
-        iotc_device_key
+        iotc_server_connect_timeout_ms,
+        NULL,
+        NULL
 };
 
 da16k_wifi_cfg_t iotc_wifi_cfg = {
         iotc_wifi_ssid,
         iotc_wifi_passphrase,
-        iotc_wifi_encryption_type,
         iotc_wifi_hidden_network,
         iotc_wifi_connection_timeout
 };
@@ -35,7 +35,7 @@ da16k_wifi_cfg_t iotc_wifi_cfg = {
 da16k_cfg_t mx_iotc_cfg = {
         &iotc_cfg,
         &iotc_wifi_cfg,
-        0
+        iotc_network_timeout_ms
 };
 
 /* 
@@ -80,17 +80,18 @@ __weak void da16k_cmd_handler(da16k_cmd_t * cmd) {
 int MX_${ModuleName}_Process(void) {
     da16k_cmd_t current_cmd = {0};
     da16k_err_t err;
-    static uint32_t tickExpiry = 0;
-    uint32_t tickCurrent = HAL_GetTick();
+    static uint32_t tick_expiry = 0;
+    uint32_t tick_current = HAL_GetTick();
 
-    if(tickCurrent < tickExpiry)
+    if(tick_current < tick_expiry) {
         return 0;
-    else
-        tickExpiry += 2000;
+    } else {
+        tick_expiry += 2000;
+    }
 
     err = da16k_get_cmd(&current_cmd);
 
-    if (err == DA16K_SUCCESS && current_cmd.command) {
+    if (err == DA16K_SUCCESS) {
         da16k_cmd_handler(&current_cmd);
         da16k_destroy_cmd(current_cmd);
     }
