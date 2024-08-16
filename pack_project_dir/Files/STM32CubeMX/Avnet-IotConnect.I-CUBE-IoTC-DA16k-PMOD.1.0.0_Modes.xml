@@ -18,25 +18,25 @@
         <Parameter Added="true" Name="iotc_env">
             <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
         </Parameter>
-        <Parameter Added="true" Name="iotc_device_cert">
-            <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
-        </Parameter>
-        <Parameter Added="true" Name="iotc_device_key">
-            <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
-        </Parameter>
         <Parameter Added="true" Name="iotc_wifi_ssid">
             <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
         </Parameter>
         <Parameter Added="true" Name="iotc_wifi_passphrase">
             <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
         </Parameter>
-        <Parameter Added="true" Name="iotc_wifi_encryption_type">
-            <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
-        </Parameter>
         <Parameter Added="true" Name="iotc_wifi_hidden_network">
             <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
         </Parameter>
         <Parameter Added="true" Name="iotc_wifi_connection_timeout">
+            <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
+        </Parameter>
+        <Parameter Added="true" Name="iotc_cpid">
+            <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
+        </Parameter>
+        <Parameter Added="true" Name="iotc_server_connect_timeout_ms">
+            <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
+        </Parameter>
+        <Parameter Added="true" Name="iotc_network_timeout_ms">
             <Condition Diagnostic="" Expression="SEMDeviceJjApplicationJjsingleIithread" Name="single_threaded_condition"/>
         </Parameter>
     </RefMode>
@@ -70,24 +70,20 @@
         <PossibleValue Comment="DISABLE" Value="DISABLE"/>
         <PossibleValue Comment="For use in projects that do not use a RTOS" Semaphore="SEMDeviceJjApplicationJjsingleIithread" Value="singleIithread"/>
     </RefParameter>
-    <RefParameter Added="true" Comment="Wifi Connection timeout in ms" DefaultValue="0" Group="Basic Parameters" Max="900000" Min="0" Name="iotc_wifi_connection_timeout" TabName="Parameter Settings" Type="integer" Unit=""/>
-    <RefParameter Added="true" Comment="Env" DefaultValue="&quot;&quot;" Group="Basic Parameters" Name="iotc_env" TabName="Parameter Settings" Type="stringRW"/>
-    <RefParameter Added="true" Comment="duid" DefaultValue="&quot;&quot;" Group="Basic Parameters" Name="iotc_duid" TabName="Parameter Settings" Type="stringRW"/>
-    <RefParameter Added="true" Comment="Wifi Encryption Type" DefaultValue="DA16K_WIFI_OPEN" Group="Basic Parameters" Name="iotc_wifi_encryption_type" TabName="Parameter Settings" Type="list">
-        <PossibleValue Comment="OPEN" Value="DA16K_WIFI_OPEN"/>
-        <PossibleValue Comment="WPA" Value="DA16K_WIFI_WPA1_2"/>
-        <PossibleValue Comment="WEP" Value="DA16K_WIFI_WEP"/>
-    </RefParameter>
-    <RefParameter Added="true" Comment="Wifi Hidden Network" DefaultValue="false" Group="Basic Parameters" Name="iotc_wifi_hidden_network" TabName="Parameter Settings" Type="boolean">
+    <RefParameter Added="true" Comment="Server Connection Timeout in ms" DefaultValue="15000" Group="IoTC Device" Max="900000" Min="0" Name="iotc_server_connect_timeout_ms" TabName="Parameter Settings" Type="integer" Unit=""/>
+    <RefParameter Added="true" Comment="Wifi Connection timeout in ms" DefaultValue="15000" Group="Wifi" Max="900000" Min="0" Name="iotc_wifi_connection_timeout" TabName="Parameter Settings" Type="integer" Unit=""/>
+    <RefParameter Added="true" Comment="Network Timeout in ms" DefaultValue="2000" Group="Basic Parameters" Max="900000" Min="0" Name="iotc_network_timeout_ms" TabName="Parameter Settings" Type="integer" Unit=""/>
+    <RefParameter Added="true" Comment="Env" DefaultValue="&quot;&quot;" Group="IoTC Device" Name="iotc_env" TabName="Parameter Settings" Type="stringRW"/>
+    <RefParameter Added="true" Comment="cpid" DefaultValue="&quot;&quot;" Group="IoTC Device" Name="iotc_cpid" TabName="Parameter Settings" Type="stringRW"/>
+    <RefParameter Added="true" Comment="duid" DefaultValue="&quot;&quot;" Group="IoTC Device" Name="iotc_duid" TabName="Parameter Settings" Type="stringRW"/>
+    <RefParameter Added="true" Comment="Wifi Hidden Network" DefaultValue="false" Group="Wifi" Name="iotc_wifi_hidden_network" TabName="Parameter Settings" Type="boolean">
         <PossibleValue Comment="true" Value="true"/>
         <PossibleValue Comment="false" Value="false"/>
     </RefParameter>
-    <RefParameter Added="true" Comment="Wifi SSID" DefaultValue="&quot;&quot;" Group="Basic Parameters" Name="iotc_wifi_ssid" TabName="Parameter Settings" Type="stringRW"/>
-    <RefParameter Added="true" Comment="Mode" DefaultValue="DA16K_IOTC_AWS" Group="Basic Parameters" Name="iotc_mode" TabName="Parameter Settings" Type="list">
+    <RefParameter Added="true" Comment="Wifi SSID" DefaultValue="&quot;&quot;" Group="Wifi" Name="iotc_wifi_ssid" TabName="Parameter Settings" Type="stringRW"/>
+    <RefParameter Added="true" Comment="Mode" DefaultValue="DA16K_IOTC_AWS" Group="IoTC Device" Name="iotc_mode" TabName="Parameter Settings" Type="list">
         <PossibleValue Comment="AWS" Value="DA16K_IOTC_AWS"/>
         <PossibleValue Comment="AZURE" Value="DA16K_IOTC_AZURE"/>
     </RefParameter>
-    <RefParameter Added="true" Comment="Device-Certificate" DefaultValue="&quot;&quot;" Group="Basic Parameters" Name="iotc_device_cert" TabName="Parameter Settings" Type="stringRW"/>
-    <RefParameter Added="true" Comment="Device-Key" DefaultValue="&quot;&quot;" Group="Basic Parameters" Name="iotc_device_key" TabName="Parameter Settings" Type="stringRW"/>
-    <RefParameter Added="true" Comment="Wifi Passphrase" DefaultValue="&quot;&quot;" Group="Basic Parameters" Name="iotc_wifi_passphrase" TabName="Parameter Settings" Type="stringRW"/>
+    <RefParameter Added="true" Comment="Wifi Passphrase" DefaultValue="&quot;&quot;" Group="Wifi" Name="iotc_wifi_passphrase" TabName="Parameter Settings" Type="stringRW"/>
 </IP>
