@@ -52,6 +52,13 @@ You can use the `/* USER CODE BEGIN ... */` comments as locations to insert thes
 
 In main.c:
 ```C
+/* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <stdbool.h>
+/* USER CODE END Includes */
+```
+ and
+```C
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 #define DEBUG_LINE_SIZE (256)
