@@ -24,6 +24,9 @@
                 <file category="header" name="Drivers/BSP/iotc_da16k_pmod/da16k_comm.h"/>
                 <file category="header" name="Drivers/BSP/iotc_da16k_pmod/da16k_uart.h"/>
                 <file category="header" name="Drivers/BSP/iotc_da16k_pmod/da16k_platforms.h"/>
+                <file category="header" name="Drivers/BSP/iotc_da16k_pmod/da16k_private.h"/>
+                <file category="source" name="Drivers/BSP/iotc_da16k_pmod/da16k_at.c"/>
+                <file category="source" name="Drivers/BSP/iotc_da16k_pmod/da16k_sys.c"/>
             </files>
         </component>
         <component Cclass="Device" Cgroup="Application" Cvariant="single_thread" Cversion="1.0.0" isDefaultVariant="true" maxInstances="1">

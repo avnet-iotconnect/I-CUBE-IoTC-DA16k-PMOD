@@ -34,6 +34,9 @@
             <File Category="header" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_comm.h"/>
             <File Category="header" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_uart.h"/>
             <File Category="header" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_platforms.h"/>
+            <File Category="header" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_private.h"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_at.c"/>
+            <File Category="source" Condition="" Name="Drivers/BSP/iotc_da16k_pmod/da16k_sys.c"/>
         </SubComponent>
     </RefComponent>
     <RefComponent Cclass="Device" Cgroup="Application" Cversion="1Gg0Gg0">

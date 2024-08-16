@@ -17,10 +17,10 @@
  
 da16k_iotc_cfg_t iotc_cfg = {
         iotc_mode,
-		iotc_cpid,
+        iotc_cpid,
         iotc_duid,
         iotc_env,
-		iotc_server_connect_timeout_ms,
+        iotc_server_connect_timeout_ms,
         NULL,
         NULL
 };
