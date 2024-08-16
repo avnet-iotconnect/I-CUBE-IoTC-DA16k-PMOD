@@ -97,11 +97,13 @@
                     [#if UsartIpInstanceList == ""]
                         [#assign UsartIpInstance = bsp.solution]
                         [#assign UsartIpInstanceList = bsp.solution]
+                        [#assign USARTDmaIsTrue = bsp.dmaUsed]
 extern UART_HandleTypeDef h${UsartIpInstance?lower_case?replace("s","")};
 UART_HandleTypeDef *da_uart_p=&h${UsartIpInstance?lower_case?replace("s","")};
                     [#elseif !UsartIpInstanceList?contains(bsp.solution)]
                         [#assign UsartIpInstance = bsp.solution]
                         [#assign UsartIpInstanceList = UsartIpInstanceList + "," + bsp.solution]
+                        [#assign USARTDmaIsTrue = bsp.dmaUsed]
 extern UART_HandleTypeDef h${UsartIpInstance?lower_case?replace("s","")};
 UART_HandleTypeDef *da_uart_p=&h${UsartIpInstance?lower_case?replace("s","")};
                     [/#if]
@@ -110,11 +112,13 @@ UART_HandleTypeDef *da_uart_p=&h${UsartIpInstance?lower_case?replace("s","")};
                     [#if UsartIpInstanceList == ""]
                         [#assign UsartIpInstance = bsp.solution]
                         [#assign UsartIpInstanceList = bsp.solution]
+                        [#assign USARTDmaIsTrue = bsp.dmaUsed]
 extern UART_HandleTypeDef h${UsartIpInstance?lower_case};
 UART_HandleTypeDef *da_uart_p=&h${UsartIpInstance?lower_case};
                     [#elseif !UsartIpInstanceList?contains(bsp.solution)]
                         [#assign UsartIpInstance = bsp.solution]
                         [#assign UsartIpInstanceList = UsartIpInstanceList + "," + bsp.solution]
+                        [#assign USARTDmaIsTrue = bsp.dmaUsed]
 extern UART_HandleTypeDef h${UsartIpInstance?lower_case};
 UART_HandleTypeDef *da_uart_p=&h${UsartIpInstance?lower_case};
                     [/#if]
@@ -123,11 +127,13 @@ UART_HandleTypeDef *da_uart_p=&h${UsartIpInstance?lower_case};
                     [#if UsartIpInstanceList == ""]
                         [#assign UsartIpInstance = bsp.solution]
                         [#assign UsartIpInstanceList = bsp.solution]
+                        [#assign USARTDmaIsTrue = bsp.dmaUsed]
 extern UART_HandleTypeDef h${UsartIpInstance?lower_case};
 UART_HandleTypeDef *da_uart_p=&h${UsartIpInstance?lower_case};
                     [#elseif !UsartIpInstanceList?contains(bsp.solution)]
                         [#assign UsartIpInstance = bsp.solution]
                         [#assign UsartIpInstanceList = UsartIpInstanceList + "," + bsp.solution]
+                        [#assign USARTDmaIsTrue = bsp.dmaUsed]
 extern UART_HandleTypeDef h${UsartIpInstance?lower_case};
 UART_HandleTypeDef *da_uart_p=&h${UsartIpInstance?lower_case};
                     [/#if]
@@ -250,11 +256,10 @@ bool da16k_uart_send(const char *src, size_t length) {
 
     memcpy(tx_buf[buf_select], src, length);
     do {
-[#if bsp.dmaUsed == true]
+[#if busIODriverWithDMA??]
         s = HAL_UART_Transmit_DMA(da_uart_p, (uint8_t*)tx_buf[buf_select], length);
-[#else]
         s = HAL_UART_Transmit(da_uart_p, (uint8_t*)tx_buf[buf_select], length, _500MS);
-[/if]
+[/#if]
     }while(s != HAL_OK);
 
     buf_select = buf_select ? 0:1;

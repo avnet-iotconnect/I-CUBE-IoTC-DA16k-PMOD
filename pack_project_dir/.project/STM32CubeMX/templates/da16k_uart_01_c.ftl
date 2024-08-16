@@ -252,9 +252,8 @@ bool da16k_uart_send(const char *src, size_t length) {
     do {
 [#if bsp.dmaUsed == true]
         s = HAL_UART_Transmit_DMA(da_uart_p, (uint8_t*)tx_buf[buf_select], length);
-[#else]
         s = HAL_UART_Transmit(da_uart_p, (uint8_t*)tx_buf[buf_select], length, _500MS);
-[/if]
+[/#if]
     }while(s != HAL_OK);
 
     buf_select = buf_select ? 0:1;
