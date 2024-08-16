@@ -17,17 +17,17 @@
  
 da16k_iotc_cfg_t iotc_cfg = {
         iotc_mode,
+        iotc_cpid,
         iotc_duid,
         iotc_env,
-        "",
-        iotc_device_cert,
-        iotc_device_key
+        iotc_server_connect_timeout_ms,
+        NULL,
+        NULL
 };
 
 da16k_wifi_cfg_t iotc_wifi_cfg = {
         iotc_wifi_ssid,
         iotc_wifi_passphrase,
-        iotc_wifi_encryption_type,
         iotc_wifi_hidden_network,
         iotc_wifi_connection_timeout
 };
@@ -35,7 +35,7 @@ da16k_wifi_cfg_t iotc_wifi_cfg = {
 da16k_cfg_t mx_iotc_cfg = {
         &iotc_cfg,
         &iotc_wifi_cfg,
-        0
+        iotc_network_timeout_ms
 };
 
 /* 
@@ -91,7 +91,7 @@ int MX_${ModuleName}_Process(void) {
 
     err = da16k_get_cmd(&current_cmd);
 
-    if (err == DA16K_SUCCESS && current_cmd.command) {
+    if (err == DA16K_SUCCESS) {
         da16k_cmd_handler(&current_cmd);
         da16k_destroy_cmd(current_cmd);
     }
