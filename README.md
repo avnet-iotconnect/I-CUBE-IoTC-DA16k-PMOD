@@ -1,3 +1,14 @@
+# DA16k PMOD Firmware.
+To ensure compatability with this I-CUBE pack, matching DA16k-PMOD firmware has been included within it.
+
+The image files can be found in the STM32Cube Repository e.g.
+
+```
+~/STM32Cube/Repository/Packs/Avnet-IotConnect/I-CUBE-IoTC-DA16k-PMOD/1.0.0/iotc-dialog-da16k-sdk/images/
+```
+
+Follow the instructions in the [Quickstart guide](https://github.com/avnet-iotconnect/iotc-dialog-da16k-sdk/blob/main/doc/QUICKSTART.md) to flash the DA16k PMOD, just using the FW bundled with the I-CUBE pack instead of what is hosted on Github.
+
 # Usage
 1. Download the [pack](pack_project_dir/Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack) to your machine.
 1. Open up [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
