@@ -1,0 +1,2 @@
+C:\wrk\iotc\I-CUBE-IoTC-DA16k-PMOD\iotc-dialog-da16k-sdk\images\DA16200_FRTOS-GEN01-01-2aa77df370-006629.img::iotc-dialog-da16k-sdk/images/DA16200_FRTOS-GEN01-01-2aa77df370-006629.img
+C:\wrk\iotc\I-CUBE-IoTC-DA16k-PMOD\iotc-dialog-da16k-sdk\images\DA16600_FRTOS-GEN01-01-2aa77df370-006629.img::iotc-dialog-da16k-sdk/images/DA16600_FRTOS-GEN01-01-2aa77df370-006629.img

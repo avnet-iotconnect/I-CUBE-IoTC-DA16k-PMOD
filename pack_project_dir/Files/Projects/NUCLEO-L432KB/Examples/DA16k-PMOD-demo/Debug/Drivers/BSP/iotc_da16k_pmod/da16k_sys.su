@@ -1,0 +1,4 @@
+../Drivers/BSP/iotc_da16k_pmod/da16k_sys.c:16:7:da16k_malloc	16	static
+../Drivers/BSP/iotc_da16k_pmod/da16k_sys.c:20:6:da16k_free	16	static
+../Drivers/BSP/iotc_da16k_pmod/da16k_sys.c:26:7:da16k_strdup	24	static
+../Drivers/BSP/iotc_da16k_pmod/da16k_sys.c:38:6:da16k_double_to_string	56	static

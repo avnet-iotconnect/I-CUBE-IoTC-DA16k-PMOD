@@ -36,4 +36,24 @@
             </files>
         </component>
     </components>
+    <examples>
+        <example doc="README.md" folder="Projects/NUCLEO-L432KB/Examples/DA16k-PMOD-demo" name="DA16k-PMOD-demo" public="true" version="1.0.0">
+            <description>A simple project that incorporates I-CUBE-IoTC-DA16k-PMOD along with code that illustrates how to send telemetry &amp; how to react to C2D commands.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-L432KB" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="DA16k-PMOD-demo" load=".cproject" name="stm32cubeide"/>
+                <environment folder="DA16k-PMOD-demo" load="DA16k-PMOD-demo-n32l43.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <component Cclass="Extension Board" Cgroup="iotc_da16k_pmod" Csub="subgroup" Cvendor="STMicroelectronics" Cversion="1.0.0"/>
+                <component Cclass="Device" Cgroup="Application" Cvariant="single_thread" Cvendor="Avnet-IotConnect" Cversion="1.0.0"/>
+                <category>IoT</category>
+                <category>PMOD</category>
+                <keyword>IoT</keyword>
+                <keyword>IoTConnect</keyword>
+                <keyword>DA16K</keyword>
+                <keyword>PMOD</keyword>
+            </attributes>
+        </example>
+    </examples>
 </package>
