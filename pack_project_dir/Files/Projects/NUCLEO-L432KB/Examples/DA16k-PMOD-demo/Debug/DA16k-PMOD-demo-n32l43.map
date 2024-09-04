@@ -5224,7 +5224,7 @@ LOAD C:/ST/STM32CubeIDE_1.15.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_line    0x000101aa      0x8ff ./iotc_da16k_pmod/App/app_iotc_da16k_pmod.o
  .debug_line    0x00010aa9      0x9cc ./iotc_da16k_pmod/Target/da16k_uart.o
 
-.debug_str      0x00000000    0xc3972
+.debug_str      0x00000000    0xc3975
  .debug_str     0x00000000    0xb8773 ./Core/Src/debug_uart.o
                               0xb8b4b (size before relaxing)
  .debug_str     0x000b8773     0x3e75 ./Core/Src/main.o
@@ -5269,9 +5269,9 @@ LOAD C:/ST/STM32CubeIDE_1.15.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                               0xb9629 (size before relaxing)
  .debug_str     0x000c349b      0x1f7 ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o
                               0xb8c34 (size before relaxing)
- .debug_str     0x000c3692      0x1e6 ./iotc_da16k_pmod/App/app_iotc_da16k_pmod.o
-                              0xbbab5 (size before relaxing)
- .debug_str     0x000c3878       0xfa ./iotc_da16k_pmod/Target/da16k_uart.o
+ .debug_str     0x000c3692      0x1e9 ./iotc_da16k_pmod/App/app_iotc_da16k_pmod.o
+                              0xbbab8 (size before relaxing)
+ .debug_str     0x000c387b       0xfa ./iotc_da16k_pmod/Target/da16k_uart.o
                               0xbc5ff (size before relaxing)
 
 .comment        0x00000000       0x43

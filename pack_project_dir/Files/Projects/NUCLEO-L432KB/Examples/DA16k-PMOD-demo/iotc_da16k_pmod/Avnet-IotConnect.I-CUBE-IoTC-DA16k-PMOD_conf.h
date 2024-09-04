@@ -48,16 +48,16 @@
 #define iotc_wifi_hidden_network      false
 
 /*---------- iotc_wifi_connection_timeout  -----------*/
-#define iotc_wifi_connection_timeout      15000
+#define iotc_wifi_connection_timeout      150000
 
 /*---------- iotc_cpid  -----------*/
 #define iotc_cpid      "97FF86E8728645E9B89F7B07977E4B15"
 
 /*---------- iotc_server_connect_timeout_ms  -----------*/
-#define iotc_server_connect_timeout_ms      15000
+#define iotc_server_connect_timeout_ms      150000
 
 /*---------- iotc_network_timeout_ms  -----------*/
-#define iotc_network_timeout_ms      2000
+#define iotc_network_timeout_ms      20000
 
 #ifdef __cplusplus
 }

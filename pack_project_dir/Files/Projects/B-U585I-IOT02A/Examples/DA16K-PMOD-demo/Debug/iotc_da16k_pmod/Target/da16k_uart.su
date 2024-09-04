@@ -1,0 +1,6 @@
+../iotc_da16k_pmod/Target/da16k_uart.c:91:6:HAL_DA16K_UART_TxCpltCallback	16	static
+../iotc_da16k_pmod/Target/da16k_uart.c:98:6:HAL_DA16K_UART_RxCpltCallback	16	static
+../iotc_da16k_pmod/Target/da16k_uart.c:132:6:da16k_uart_init	8	static
+../iotc_da16k_pmod/Target/da16k_uart.c:159:6:da16k_uart_send	24	static
+../iotc_da16k_pmod/Target/da16k_uart.c:182:13:da16k_uart_get_char	24	static
+../iotc_da16k_pmod/Target/da16k_uart.c:205:6:da16k_uart_close	8	static

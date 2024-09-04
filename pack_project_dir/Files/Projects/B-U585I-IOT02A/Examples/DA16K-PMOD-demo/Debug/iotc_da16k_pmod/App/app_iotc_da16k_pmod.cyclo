@@ -1,0 +1,4 @@
+../iotc_da16k_pmod/App/app_iotc_da16k_pmod.c:41:22:da16k_get_config	1
+../iotc_da16k_pmod/App/app_iotc_da16k_pmod.c:49:5:MX_iotc_da16k_pmod_Init	3
+../iotc_da16k_pmod/App/app_iotc_da16k_pmod.c:66:13:da16k_cmd_handler	2
+../iotc_da16k_pmod/App/app_iotc_da16k_pmod.c:76:5:MX_iotc_da16k_pmod_Process	3

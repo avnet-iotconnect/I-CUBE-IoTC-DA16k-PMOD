@@ -1,0 +1,6 @@
+../Core/Src/debug_uart.c:22:5:head_to_tail_buf_write	2
+../Core/Src/debug_uart.c:29:5:head_to_tail_buf_read	3
+../Core/Src/debug_uart.c:47:6:HAL_DEBUG_UART_TxCpltCallback	1
+../Core/Src/debug_uart.c:55:6:HAL_DEBUG_UART_RxCpltCallback	2
+../Core/Src/debug_uart.c:62:5:__io_putchar	2
+../Core/Src/debug_uart.c:72:5:__io_getchar	2

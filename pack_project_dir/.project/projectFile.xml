@@ -55,5 +55,21 @@
                 <keyword>PMOD</keyword>
             </attributes>
         </example>
+        <example doc="README.md" folder="C:/wrk/iotc/x-h5/DA16k-PMOD-demo-B-U585I-IOT02A::Projects/B-U585I-IOT02A/Examples/DA16K-PMOD-demo" name="DA16K-PMOD-demo" public="true" version="1.0.0">
+            <description>A simple integration example of the DA16k-PMOD with a B-U585I-IOT02A board.</description>
+            <board Dvendor="STMicroelectronics:13" name="B-U585I-IOT02A" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="DA16K-PMOD-demo" load=".cproject" name="stm32cubeide"/>
+                <environment folder="DA16K-PMOD-demo" load="DA16k-PMOD-demo-B-U585I-IOT02A.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <component Cclass="Extension Board" Cgroup="iotc_da16k_pmod" Csub="subgroup" Cvendor="STMicroelectronics" Cversion="1.0.0"/>
+                <component Cclass="Device" Cgroup="Application" Cvariant="single_thread" Cvendor="Avnet-IotConnect" Cversion="1.0.0"/>
+                <category>IoT</category>
+                <keyword>IoT</keyword>
+                <keyword>IoTC</keyword>
+                <keyword>PMOD</keyword>
+            </attributes>
+        </example>
     </examples>
 </package>

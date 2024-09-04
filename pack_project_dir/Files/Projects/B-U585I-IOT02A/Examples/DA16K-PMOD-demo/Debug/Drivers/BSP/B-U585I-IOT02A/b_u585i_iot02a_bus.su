@@ -1,0 +1,10 @@
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:87:9:BSP_USART2_Init	16	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:127:9:BSP_USART2_DeInit	16	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:154:9:BSP_USART2_Send	24	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:171:10:BSP_USART2_Recv	24	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:187:9:BSP_USART2_RegisterDefaultMspCallbacks	8	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:213:9:BSP_USART2_RegisterMspCallbacks	16	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:240:9:BSP_GetTick	8	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:246:26:MX_USART2_UART_Init	24	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:284:13:USART2_MspInit	248	static
+../Drivers/BSP/B-U585I-IOT02A/b_u585i_iot02a_bus.c:328:13:USART2_MspDeInit	16	static
