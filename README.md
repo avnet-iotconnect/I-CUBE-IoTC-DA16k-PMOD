@@ -1,4 +1,4 @@
-# DA16k PMOD Firmware.
+# DA16k PMOD Firmware
 To ensure compatability with this I-CUBE pack, matching DA16k-PMOD firmware has been included within it.
 
 The image files can be found in the STM32Cube Repository e.g.
@@ -7,15 +7,17 @@ The image files can be found in the STM32Cube Repository e.g.
 ~/STM32Cube/Repository/Packs/Avnet-IotConnect/I-CUBE-IoTC-DA16k-PMOD/1.0.0/iotc-dialog-da16k-sdk/images/
 ```
 
-Follow the instructions in the [Quickstart guide](https://github.com/avnet-iotconnect/iotc-dialog-da16k-sdk/blob/main/doc/QUICKSTART.md) to flash the DA16k PMOD, just using the FW bundled with the I-CUBE pack instead of what is hosted on Github.
+Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotconnect/iotc-dialog-da16k-sdk/blob/main/doc/QUICKSTART.md) to flash the DA16k PMOD.
+> [!NOTE]
+> Use the FW bundled with the I-CUBE .pack file instead of what is on Github.
 
 # Usage
-1. Download the [pack](pack_project_dir/Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack) to your machine.
-1. Open up [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
-1. Create your CubeMX project if you haven't already.
+1. Download the [Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](pack_project_dir/Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack)
+1. Download and Launch [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
+1. Create a **CubeMX** project
 1. In the CubeMX view click on “Manage Software Packs”
 1. Click on "From Local ..."
-1. Navigate to the pack & select it
+1. Navigate to and select the .pack file
 1. Accept the license
 1. Close the window
 1. Now go to "Select Components"
