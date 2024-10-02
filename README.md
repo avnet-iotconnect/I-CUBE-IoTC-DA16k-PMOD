@@ -36,19 +36,19 @@ Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotco
  - _Optional DMA Settings:_
    1. _Click "Add"._
    1. _Select the "*TX" option from the "DMA Request" column._
-14. Now in the "Pinout & Configutation" tab of the CubeMX view, select "I-CUBE-IoTC-DA16k-PMOD" from "Middlewares & Software Packs" on the left hand side of the window.
-1. Check both the "Extension Board iotc da16k pmod" & "Device Application" boxes.
-1. This will make the "Platform Settings" tab available below, CubeMX will query the current setup & find the suitable serial ports that can be used with the pack. In "IPs or Components" select the type fo serial port you configured previously.
-1. Now select the serial port previously configured from the "Found Solutions" pull-down menu.
-2. In the "Parameter Settings" tab enter in the device & wifi credentials.
+14. In the "Pinout & Configutation" tab of the CubeMX view, select "I-CUBE-IoTC-DA16k-PMOD" from "Middlewares & Software Packs" on the left hand side.
+1. Check both the "Extension Board iotc da16k pmod" & "Device Application" boxes. This will make the "Platform Settings" tab available below.
+1. CubeMX will query the current setup and find the suitable serial ports that can be used with the pack. In "IPs or Components" select the type of serial port configured previously.
+1. Select the serial port previously configured from the "Found Solutions" pull-down menu.
+2. Enter the device and wifi credentials in the "Parameter Settings" tab.
 3. At the top of the CubeMX window click on the "Project Manager" tab.
-4. On the left hand side of the window click on the "Advanced Settings"
-5. On the right hand side of the window, within the "Register Callback" pane, Find the UART/USART/LPUART section you intend to use & set it's register callbacks to "ENABLE".
-1. "Ctrl + s" to save the settings & generate the code.
+4. On the left hand side, click on the "Advanced Settings"
+5. On the right hand side, within the "Register Callback" pane, find the **UART/USART/LPUART** section to use and set the register callbacks to "ENABLE".
+1. Save the setting ("Ctrl + s") and generate the code.
 2. If you intend to send telemetry open up the project properties:
    - Navigate to C/C++ Build -> Settings
    - Set the "Runtime Library" to "Standard C"
-4. Upload the device certificate & key using the console port on the da16k:
+4. Upload the device certificate and key using the console port on the da16k:
    - Enter `net` into the terminal to switch to the network commands context.
    - Enter `cert write cert1`.
    - Paste the certificate into the terminal.
