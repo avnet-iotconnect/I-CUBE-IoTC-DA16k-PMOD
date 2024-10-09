@@ -15,7 +15,7 @@ Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotco
 1. Download the [Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](pack_project_dir/Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack?raw=1)
 1. Download and Launch [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 1. Create a **CubeMX** project
-2.    * Select New project by MCU
+      * Select New project by MCU
       * Select the MCU part number from the drop-down list
       * Click Create Project at the top corner
 1. Click "Software Packs" in the "Pinout & Configuration" view and click “Manage Software Packs”
@@ -27,7 +27,7 @@ Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotco
 1. Check the box beside "_Extension Board_/iotc_da16k_pmod / subgroup"
 1. Select “single_thread” from the "_Device_ Application" pull-down menu.
 1. Click "OK".
-1. Set up an available serial port:
+1. Click "Connectivity" and select "USART3" (This is the Arduino connector)
  - Parameter Settings:
    - Mode: Asynchronous
    - Baud: 115200
@@ -39,6 +39,8 @@ Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotco
  - _Optional DMA Settings:_
    1. _Click "Add"._
    1. _Select the "*TX" option from the "DMA Request" column._
+ - GPIO Settings
+   - Make sure the GPIO settings are correct for your board (TX and RX pins)
 14. In the "Pinout & Configutation" tab of the CubeMX view, select "I-CUBE-IoTC-DA16k-PMOD" from "Middlewares & Software Packs" on the left hand side.
 1. Check both the "Extension Board iotc da16k pmod" & "Device Application" boxes. This will make the "Platform Settings" tab available below.
 1. CubeMX will query the current setup and find the suitable serial ports that can be used with the pack. In "IPs or Components" select the type of serial port configured previously.
@@ -47,11 +49,15 @@ Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotco
 3. At the top of the CubeMX window click on the "Project Manager" tab.
 4. On the left hand side, click on the "Advanced Settings"
 5. On the right hand side, within the "Register Callback" pane, find the **UART/USART/LPUART** section to use and set the register callbacks to "ENABLE".
+6. Click "Project Manager" and Find the Drop-down next to "Toolchain / IDE" ensure it matches your IDE (e.g. Change this to "STM32CubeIDE" for STM boards)
 1. Save the setting ("Ctrl + s") and generate the code.
-2. If you intend to send telemetry open up the project properties:
+2. Close the CubeMX
+
+Open The Project from the CubeIDE
+4. If you intend to send telemetry open up the project properties:
    - Navigate to C/C++ Build -> Settings
    - Set the "Runtime Library" to "Standard C"
-4. Upload the device certificate and key using the console port on the da16k:
+5. Upload the device certificate and key using the console port on the da16k:
    - Enter `net` into the terminal to switch to the network commands context.
    - Enter `cert write cert1`.
    - Paste the certificate into the terminal.
