@@ -12,7 +12,7 @@ Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotco
 > Use the FW bundled with the I-CUBE .pack file instead of what is on Github.
 
 # Usage
-1. Download the [Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](pack_project_dir/Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack)
+1. Download the [Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](pack_project_dir/Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack?raw=1)
 1. Download and Launch [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 1. Create a **CubeMX** project
 1. In the CubeMX view click on "Install/Remove" in the “Manage Software Installations” section
