@@ -9,7 +9,9 @@ The image files can be found in the STM32Cube Repository e.g.
 
 Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotconnect/iotc-dialog-da16k-sdk/blob/main/doc/QUICKSTART.md) to flash the DA16k PMOD.
 > [!NOTE]
-> Use the FW bundled with the I-CUBE .pack file instead of what is on Github.
+> Use the FW bundled with the X-CUBE .pack file in the */pack_project_dir* instead of what is on Github.
+
+> For STM32N6570-DK board, innstead of using the X-CUBE .pack, please add/include the submodule ***iotc-freertos-da16k-atcmd-lib @ 2bf59fa*** directly to your appication, since the board is not officially released and not supported by the CUBEMX.
 
 # Usage
 1. Download the [Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](pack_project_dir/Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack?raw=1)
