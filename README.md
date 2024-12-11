@@ -8,13 +8,22 @@ The image files can be found in the STM32Cube Repository e.g.
 ```
 
 Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotconnect/iotc-dialog-da16k-sdk/blob/main/doc/QUICKSTART.md) to flash the DA16k PMOD.
+
+# Supported Boards
+The following boards are supported by this repository:
+
+* ST STM32H573I-DK - ([Product Link](https://www.st.com/en/evaluation-tools/stm32h573i-dk.html))
+* ST STM32 B-U585I-IOT02A - ([Product Link](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html))
+* [ST STM32N6570-DK](./doc/n6.md) - ([Product Link](https://www.st.com/en/evaluation-tools/stm32n6570-dk.html))
+
 > [!NOTE]
-> Use the FW bundled with the X-CUBE .pack file in */pack_project_dir* instead of what is on Github.
->
-> For STM32N6570-DK board, instead of using the X-CUBE .pack, please add/include the submodule ***iotc-freertos-da16k-atcmd-lib @ 2bf59fa*** directly to your appication, since the board is not officially released and not supported by the CUBEMX.
+> Use the FW bundled with the X-CUBE .pack file in ***/pack_project_dir/Files*** instead of what is on Github.
+> 
+> For STM32N6570-DK board, please follow the instructions in the doc foler.
+
 
 # Usage
-1. Download the [Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](pack_project_dir/Avnet-IotConnect.I-CUBE-IoTC-DA16k-PMOD.1.0.0.pack?raw=1)
+1. Download the [Avnet-IotConnect.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files)
 1. Download and Launch [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 1. Create a **CubeMX** project
       * Select New project by MCU
