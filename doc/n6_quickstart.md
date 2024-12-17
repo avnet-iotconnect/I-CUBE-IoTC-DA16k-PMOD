@@ -5,7 +5,7 @@
 > The regular process for using the X-CUBE package is to follow this repository's README.md. This document is just a temperary method for using the X-CUBE package with STM32N6 boards and **STM32N6_AI_H264_UVC_Application**.
 > 
 ## Step 1: Setup the Application
-* Download the Applicaiton **STM32N6_AI_H264_UVC_Application** from ST website and import the project to STM32CubeIDE (v 1.16.0).
+* Download the applicaiton **STM32N6_AI_H264_UVC_Application** from ST website and import the project to STM32CubeIDE (v 1.16.0).
 * Download the [Avnet-IotConnect.X-CUBE-IoTC-DA16K-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files) and unzip it.
 * Copy the X-CUBE pack's folder /Drivers/BSP/iotc_da16k_pmod into the project. Add the folder ***PATH*** to the project.
 * Create a local da16k_uart.c in the project's Src folder based on the declarations in the iotc_da16k_pmod/da16k_uart.h.
@@ -49,6 +49,6 @@ da16k_err_t da16k_uart_get_char(char *dst, uint32_t timeout_ms) {
 ## Step 2: Debug/Run the Applicaton
 * Connect both USB Type-C ports to the computer. One is for debugging and the other is for the power.
 * Connect the camera via the ribbon cable to the board.
-* Connect the DA16K PMOD module to the board via an (Arduino to PMOD) adapter or bare wires.
+* Connect the DA16K PMOD module to the board via an adapter(Arduino to PMOD adapter. e.x. [PMOD Shield](https://www.digikey.com/en/product-highlight/d/digilent/pmod-shield-adapter-board)) or bare wires.
 * Debug the project and Start.
 * Launch the camera via N6CamViwer or ffplay.

@@ -1,10 +1,10 @@
 # DA16k PMOD Firmware
-To ensure compatability with this I-CUBE pack, matching DA16k-PMOD firmware has been included within it.
+To ensure compatability with this X-CUBE pack, matching DA16k-PMOD firmware has been included within it.
 
-The image files can be found in the STM32Cube Repository e.g.
+The image files can be found in the Repository e.g.
 
 ```
-~/STM32Cube/Repository/Packs/Avnet-IotConnect/I-CUBE-IoTC-DA16k-PMOD/1.0.0/iotc-dialog-da16k-sdk/images/
+https://github.com/avnet-iotconnect/iotc-dialog-da16k-sdk/tree/main/images
 ```
 
 Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotconnect/iotc-dialog-da16k-sdk/blob/main/doc/QUICKSTART.md) to flash the DA16k PMOD.
@@ -12,18 +12,18 @@ Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotco
 # Supported Boards
 The following boards are supported by this repository:
 
-* ST STM32H573I-DK - ([Product Link](https://www.st.com/en/evaluation-tools/stm32h573i-dk.html))
-* ST STM32 B-U585I-IOT02A - ([Product Link](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html))
-* [ST STM32N6570-DK](./doc/n6.md) - ([Product Link](https://www.st.com/en/evaluation-tools/stm32n6570-dk.html))
+* ST [STM32H573I-DK](https://www.st.com/en/evaluation-tools/stm32h573i-dk.html)
+* ST [STM32 B-U585I-IOT02A](https://www.st.com/en/evaluation-tools/b-u585i-iot02a.html)
+* ST [STM32N6570-DK](https://www.st.com/en/evaluation-tools/stm32n6570-dk.html)
 
 > [!NOTE]
 > Use the FW bundled with the X-CUBE .pack file in ***/pack_project_dir/Files*** instead of what is on Github.
 > 
-> For STM32N6570-DK board, please follow the instructions in the doc foler.
+> For STM32N6570-DK board, please follow the [instructions](./doc/n6_quickstart.md) in the /doc folder.
 
 
 # Usage
-1. Download the [Avnet-IotConnect.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files)
+1. Download the [Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files)
 1. Download and Launch [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 1. Create a **CubeMX** project
       * Select New project by MCU
