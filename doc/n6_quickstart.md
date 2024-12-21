@@ -49,6 +49,15 @@ da16k_err_t da16k_uart_get_char(char *dst, uint32_t timeout_ms) {
 ## Step 2: Debug/Run the Applicaton
 * Connect both USB Type-C ports to the computer. One is for debugging and the other is for the power.
 * Connect the camera via the ribbon cable to the board.
-* Connect the DA16K PMOD module to the board via an adapter(Arduino to PMOD adapter. e.x. [PMOD Shield](https://www.digikey.com/en/product-highlight/d/digilent/pmod-shield-adapter-board)) or bare wires.
-* Debug the project and Start.
+* Connect the DA16k PMOD module to the board via an adapter(PMOD to Arduino adapter. e.x. [PMOD Shield](https://www.digikey.com/en/product-highlight/d/digilent/pmod-shield-adapter-board)) or [jumper wires](https://www.newark.com/multicomp-pro/mp006283/jumper-wire-kit-male-to-female/dp/15AJ6557) (pins are listed in the table below).
+
+
+| PMOD Connector pin # |      Signal       |             
+|:--------------------:|:-----------------:| 
+|          2           |        TXD        | 
+|          3           |        RXD        | 
+|       5  or 11       |        GND        |
+|       6  or 12       |  VCC (3V3 or 5V)  |
+
+* `Debug` the project and `Start`.
 * Launch the camera via N6CamViwer or ffplay.
