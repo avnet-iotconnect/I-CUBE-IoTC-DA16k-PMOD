@@ -8,6 +8,7 @@
 * Download the application **STM32N6_AI_H264_UVC_Application** from ST website and import the project to STM32CubeIDE (v 1.17.0).
 * Download the [Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files) and unzip it.
 * Copy the X-CUBE pack's folder /Drivers/BSP/iotc_da16k_pmod into the project. Add the folder ***PATH*** to the project.
+* Follow the instructions to make changes to the application [here](example_main.md).
 * Create a local da16k_uart.c in the project's Src folder based on the declarations in the iotc_da16k_pmod/da16k_uart.h.
 ```
  //EXAMPLE
@@ -45,13 +46,13 @@ da16k_err_t da16k_uart_get_char(char *dst, uint32_t timeout_ms) {
 }
 ```
 
-* Follow the instructions to make changes to the application [here](./doc/example_main.md).
+
 
 <img src="../media/n6-2.png"/>
 
 ## Step 2: Create device/template on IOTCONNECT
 * An IOTCONNECT Device Template will need to be created or imported. This defines the data format the platform should expect from the device.
-  * Download the premade  [Device Template](./doc/n6uvc_template.JSON) (Right-click, Save As)
+  * Download the premade  [Device Template](n6uvc_template.JSON) (Right-click, Save As)
   * **Click** the Device icon and the "Device" sub-menu.
   * At the bottom of the page, select the "Templates" icon from the toolbar and import the template.
 * IOTCONNECT Device Creation:
