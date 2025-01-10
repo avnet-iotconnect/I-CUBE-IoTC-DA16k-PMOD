@@ -3,13 +3,21 @@
 
 ## 1. Introduction
 
+## 2. Hardware Requirements
+
+## 3. Software Requirements
+
+* Download **v1.17.0** of the [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html#get-software)
+* Request and Download the "**n6-ai-h264-uvc**" software package from the [AI software ecosystem for STM32N6 with Neural-ART accelerator](https://www.st.com/en/development-tools/stm32n6-ai.html#st-get-software) page.
+* Download Unzip the [Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files)
 
 > [!NOTE]
 > The regular process for using the X-CUBE package is to follow this repository's README.md. This document is just a temperary method for using the X-CUBE package with STM32N6 boards and **x-cube-n6-ai-h264-usb-uvc** Application.
-> 
-## Step 1: Setup the Application
-* Download the application **STM32N6_AI_H264_UVC_Application** from ST website and import the project to STM32CubeIDE (v 1.17.0).
-* Download the [Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files) and unzip it.
+
+
+## 4. Setup the Application
+* Import the "**n6-ai-h264-uvc**" project to STM32CubeIDE.
+
 * Copy the X-CUBE pack's folder /Drivers/BSP/iotc_da16k_pmod into the project. Add the folder ***PATH*** to the project.
 * Follow the instructions to make changes to the application [here](example_main.md).
 * Create a local da16k_uart.c in the project's Src folder based on the declarations in the iotc_da16k_pmod/da16k_uart.h.
