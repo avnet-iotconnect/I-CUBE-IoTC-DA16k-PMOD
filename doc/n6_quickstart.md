@@ -1,6 +1,9 @@
 # STM32N6570-DK Board setup with Avnet's X-CUBE package
 <img src="../media/n6.jpg"/>
 
+## 1. Introduction
+
+
 > [!NOTE]
 > The regular process for using the X-CUBE package is to follow this repository's README.md. This document is just a temperary method for using the X-CUBE package with STM32N6 boards and **x-cube-n6-ai-h264-usb-uvc** Application.
 > 
