@@ -9,7 +9,7 @@
 
 * Download **v1.17.0** of the [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html#get-software)
 * Request and Download the "**n6-ai-h264-uvc**" software package from the [AI software ecosystem for STM32N6 with Neural-ART accelerator](https://www.st.com/en/development-tools/stm32n6-ai.html#st-get-software) page.
-* Download Unzip the [Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files)
+* Download Unzip the [Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files/Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack)
 
 > [!NOTE]
 > The regular process for using the X-CUBE package is to follow this repository's README.md. This document is just a temperary method for using the X-CUBE package with STM32N6 boards and **x-cube-n6-ai-h264-usb-uvc** Application.
