@@ -9,22 +9,25 @@
 
 * Download **v1.17.0** of the [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html#get-software)
 * Request and Download the "**n6-ai-h264-uvc**" software package from the [AI software ecosystem for STM32N6 with Neural-ART accelerator](https://www.st.com/en/development-tools/stm32n6-ai.html#st-get-software) page.
-* Download Unzip the [Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack](https://github.com/avnet-iotconnect/I-CUBE-IoTC-DA16k-PMOD/tree/main/pack_project_dir/Files/Avnet-IOTCONNECT.X-CUBE-IoTC-DA16k-PMOD.1.0.0.pack)
+
 
 > [!NOTE]
-> The regular process for using the X-CUBE package is to follow this repository's README.md. This document is just a temperary method for using the X-CUBE package with STM32N6 boards and **x-cube-n6-ai-h264-usb-uvc** Application.
-
+> The regular process for using the X-CUBE package is to follow this repository's README.md. This document is just a temperary method for using the X-CUBE package with STM32N6 boards and **x-cube-n6-ai-h264-usb-uvc** application.
 
 ## 4. Setup the Application
 * Import the "**n6-ai-h264-uvc**" project to STM32CubeIDE.
-
-* Copy the X-CUBE pack's folder /Drivers/BSP/iotc_da16k_pmod into the project. Add the folder ***PATH*** to the project.
+* Download the application **STM32N6_AI_H264_UVC_Application** from ST website and import the project to STM32CubeIDE (v 1.17.0).
+* Clone the repository [iotc-freertos-da16k-atcmd-lib](https://github.com/avnet-iotconnect/iotc-freertos-da16k-atcmd-lib/tree/2bf59fac9d2c075767a6f28581db575774e81b0c) and copy the folder into the project. Exclude the file *da16k_platform_ra6mx.c*.
+* Add the folder to "Include paths" of the project.
+* Comment out line 19 in file iotc_da16k_pmod/da16k_comm.h to avoid error.
+* Add two HAL_Driver files *stm32n6xx_hal_dma.c* and *stm32n6xx_hal_uart_ex.c* to directory ***x-cube-n6-ai-h264-usb-uvc-v1.0.0\STM32CubeIDE\STM32Cube_FW_N6\Drivers\STM32N6xx_HAL_Driver\Src*** from *x-cube-n6-ai-h264-usb-uvc-v1.0.0\STM32Cube_FW_N6\Drivers\STM32N6xx_HAL_Driver\Src*
 * Follow the instructions to make changes to the application [here](example_main.md).
-* Create a local da16k_uart.c in the project's Src folder based on the declarations in the iotc_da16k_pmod/da16k_uart.h.
+* Create a local da16k_uart.c in the project's Src folder based on the declarations in the iotc_da16k_pmod/da16k_uart.h. The code below is an example.
 ```
  //EXAMPLE
  
 #include "da16k_uart.h"
+#include "main.h"
 
 extern UART_HandleTypeDef huart2;
 
@@ -61,7 +64,7 @@ da16k_err_t da16k_uart_get_char(char *dst, uint32_t timeout_ms) {
 
 <img src="../media/n6-2.png"/>
 
-## Step 2: Create device/template on IOTCONNECT
+## 5. Create device/template on IOTCONNECT
 * An IOTCONNECT Device Template will need to be created or imported. This defines the data format the platform should expect from the device.
   * Download the premade  [Device Template](n6uvc_template.JSON) (Right-click, Save As)
   * **Click** the Device icon and the "Device" sub-menu.
@@ -77,15 +80,15 @@ da16k_err_t da16k_uart_get_char(char *dst, uint32_t timeout_ms) {
   * The Company ID (**CPID**) and Environment (**ENV**) variables identifying your IOTCONNECT account are required and they are loacted in the "Settings" -> "Key Vault" section of the platform.
   * You have all the information for step 3.
   
-## Step 3: Flash/Configure the DA16k PMOD module
+## 6. Flash/Configure the DA16k PMOD module
 Follow the instructions in the [QuickStart Guide](https://github.com/avnet-iotconnect/iotc-dialog-da16k-sdk/blob/main/doc/QUICKSTART.md) to flash the DA16k PMOD.
 
-## Step 2: Debug/Run the Applicaton
+## 7. Debug/Run the Applicaton
 * Connect both USB Type-C ports to the computer. One is for debugging and the other is for the power.
 * Connect the camera via the ribbon cable to the board.
 * Connect the DA16k PMOD module to the board via [jumper wires](https://www.newark.com/multicomp-pro/mp006283/jumper-wire-kit-male-to-female/dp/15AJ6557) (pins are listed in the table below) or a PMOD connector/adapter.
 > [!NOTE]
-> External 5V power source might need to power the DA16k PMOD module since the available pins on STM32N6570-DK cannot provide enough current.
+> External 5V power source might need to power the DA16k PMOD module since the available power pins on STM32N6570-DK cannot provide enough current.
 
 | PMOD Connector pin # |     Signal      |             
 |:--------------------:|:---------------:| 

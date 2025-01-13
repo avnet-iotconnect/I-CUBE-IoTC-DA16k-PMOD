@@ -610,7 +610,7 @@ __attribute__ ((section (".keep_me"))) void app_clean_invalidate_dbg()
 }
 ``` 
 > [!NOTE]
-> If you do not want to report UVC data, you only need Step 1. 
+> If you do not want to report UVC data, you only need Step 1.
 
 ### Step 2: Report UVC data to IOTCONNECT platform 
 * UVC application data in x-cube-n6-ai-h264-usb-uvc-v1.0.0 example:
@@ -618,9 +618,7 @@ __attribute__ ((section (".keep_me"))) void app_clean_invalidate_dbg()
   * person in frame x coordinate: x_center
   * person in frame y coordinate: y_center
 
-* Modify the function below in app.c.
-* Use function da16k_send_msg_direct_num(key, value) in main.c to report UVC data to IOTCONNECT
-
+* Modify the function *dp_thread_fct* below in app.c.
 
 ```
 int32_t nb_detect = 0;
@@ -678,3 +676,4 @@ static void dp_thread_fct(ULONG arg)
   }
 }
 ```
+* Use function da16k_send_msg_direct_float(key, value) in main.c to report UVC data to IOTCONNECT
